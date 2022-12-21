@@ -1,14 +1,12 @@
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         //Есть массив положительных целых чисел.  Найти элемент (если он есть), который  встречается в массиве >length/2 (доминантный элемент). В противном случае //вернуть -1
-Integer[] arr={2,3,4,4,4,1,4};
-        System.out.println(arrInteger(arr,0));
+Integer[] arr={2,3,3,3,4,4,4,3,1,4,3,3,3,3};
+        System.out.println(arrInteger(arr,4));
         //System.out.println(arrInteger1(arr,4));
+        System.out.println(arrInteger(arr));
 
     }
     public static int  arrInteger (Integer[]arr, Integer element) {
@@ -27,6 +25,17 @@ Integer[] arr={2,3,4,4,4,1,4};
         System.out.println(Arrays.toString(new Map[]{newArrInt}));
         return newArrInt.containsKey(element)&& newArrInt.get(element)>arr.length/2?newArrInt.get(element):-1;
         }*/
+  public static int arrInteger(Integer[] arr) {
+      Map<Integer, Integer> map = new HashMap<>();
 
+      for (int i : arr) {
+          Integer v = map.merge(i, 1, Integer::sum);
+          if (v > arr.length / 2) {
+              return i;
+          }
+      }
+
+      return -1;
+  }
         }
 
